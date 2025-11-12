@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplicación - Plan de Mejoramiento</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Aplicación y Evidencias</h1>
+    <nav>
+      <a href="index.html">Inicio</a> |
+      <a href="documentacion.html">Documentación</a> |
+      <a href="aplicacion.html">Aplicación</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Descripción</h2>
+      <p>La aplicación permite visualizar las lecturas de los sensores y activar el riego manualmente. Se desarrolló en App Inventor .</p>
+    </section>
+
+    <section>
+      <h2>Capturas del Diseño</h2>
+      <img src="img/app_diseno.png" alt="Diseño App">
+    </section>
+
+    <section>
+      <h2>Bloques o Código</h2>
+      <img src="img/app_bloques1.png" alt="Bloques App Inventor">
+      <img src="img/app_bloques2.png" alt="Bloques App Inventor">
+      <p>Explicación: El sistema completo permite monitorear en tiempo real la temperatura, humedad ambiental y humedad del suelo desde una aplicación móvil conectada por Bluetooth.
+Esto demuestra el uso integrado de electrónica, programación y automatización, cumpliendo con los objetivos del proyecto.</p>
+    </section>
+
+    <section>
+      <h2>Simulación en la Web </h2>
+      <p>incluimos una simulación con JavaScript que muestra valores .</p>
+
+      <div id="sim">
+        <p>Humedad: <span id="hum">--</span>%</p>
+        <p>Temperatura: <span id="temp">--</span>°C</p>
+        <button id="boton">Activar bomba (simulado)</button>
+      </div>
+
+      <script>
+        function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min}
+        function actualizar(){
+          document.getElementById('hum').textContent = rand(20,80);
+          document.getElementById('temp').textContent = rand(18,36);
+        }
+        document.getElementById('boton').addEventListener('click', function(){
+          alert('Bomba activada (simulación)');
+        });
+        setInterval(actualizar,2000);
+        actualizar();
+      </script>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 - Aplicación</p>
+  </footer>
+</body>
+</html>

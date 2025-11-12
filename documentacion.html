@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentación Técnica - Huerta Automatizada</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Documentación del Sistema Automatizado</h1>
+    <nav>
+      <a href="index.html">Inicio</a> |
+      <a href="documentacion.html">Documentación</a> |
+      <a href="aplicacion.html">Aplicación</a>
+    </nav>
+  </header>
+
+  <section id="objetivo">
+    <h2>Objetivo General</h2>
+    <p>Automatizar el riego de una huerta escolar mediante sensores de humedad, temperatura y un sistema de control con ESP32.</p>
+  </section>
+
+  <section id="componentes">
+    <h2>Componentes Utilizados</h2>
+    <table>
+      <tr><th>Componente</th><th>Función</th></tr>
+      <tr><td>ESP32</td><td>Microcontrolador principal, gestiona la lectura de sensores y el control del actuador.</td></tr>
+      <tr><td>Sensor de humedad YL-69</td><td>Detecta el nivel de humedad del suelo.</td></tr>
+      <tr><td>Sensor DHT11</td><td>Mide la temperatura y humedad del ambiente.</td></tr>
+      <tr><td>Bomba de agua</td><td>Actuador encargado del riego automático.</td></tr>
+      <tr><td>Protoboard y cables</td><td>Permiten las conexiones eléctricas del sistema.</td></tr>
+    </table>
+  </section>
+
+  <section id="diagrama">
+    <h2>Diagrama del Sistema</h2>
+    <img src="img/diagrama_bloques.png" alt="Diagrama de bloques del sistema automatizado">
+    <p><strong>Conexiones principales:</strong></p>
+    <ul>
+      <li>YL-69 → Pin A0 del ESP32</li>
+      <li>DHT11 → Pin D4</li>
+      <li>Bomba de agua → Pin D15 (vía transistor o relé)</li>
+    </ul>
+  </section>
+
+  <section id="codigo">
+    <h2>Código del Sistema (ESP32)</h2>
+    <pre><code>
+#include <WiFi.h>
+#include <DHT.h>
+
+// --- Configuración WiFi ---
+const char* ssid = "TU_SSID";
+const char* password = "TU_PASSWORD";
+
+// --- Pines ---
+#define DHTPIN 4
+#define DHTTYPE DHT11
+#define SENSOR_HUMEDAD 34
+#define BOMBA 15
+
+DHT dht(DHTPIN, DHTTYPE);
+
+// --- Variables ---
+float humedadSuelo;
+float humedadAmbiente;
+float temperatura;
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(BOMBA, OUTPUT);
+  dht.begin();
+
+  WiFi.begin(ssid, password);
+  Serial.print("Conectando a WiFi...");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\nConectado a WiFi!");
+}
+
+void loop() {
+  humedadSuelo = analogRead(SENSOR_HUMEDAD);
+  humedadAmbiente = dht.readHumidity();
+  temperatura = dht.readTemperature();
+
+  Serial.print("Humedad suelo: "); Serial.println(humedadSuelo);
+  Serial.print("Humedad ambiente: "); Serial.print(humedadAmbiente);
+  Serial.print("  Temperatura: "); Serial.println(temperatura);
+
+  if (humedadSuelo < 2000) {
+    digitalWrite(BOMBA, HIGH);
+    Serial.println("💧 Bomba encendida");
+  } else {
+    digitalWrite(BOMBA, LOW);
+    Serial.println("🚫 Bomba apagada");
+  }
+
+  delay(2000);
+}
+    </code></pre>
+  </section>
+
+  <section id="funcionamiento">
+    <h2>Explicación del Funcionamiento</h2>
+    <p>
+      El sistema mide constantemente la humedad del suelo. Si esta desciende por debajo de un valor crítico, el microcontrolador activa la bomba
+      de agua para irrigar la huerta. Simultáneamente, se leen los valores del DHT11 para monitorear la temperatura y humedad ambiental.
+      Estos datos pueden visualizarse en App Inventor.
+    </p>
+  </section>
+
+  <section id="evidencias">
+    <h2>Evidencias del Sistema</h2>
+    <img src="img/circuito.jpg" alt="Montaje físico del circuito">
+    <img src="img/resultados.jpg" alt="Lecturas en monitor serial">
+  </section>
+
+  <footer>
+    <p>© 2025 Dylan Trujillo | Documentación Técnica - Huerta Automatizada</p>
+  </footer>
+</body>
+</html>
