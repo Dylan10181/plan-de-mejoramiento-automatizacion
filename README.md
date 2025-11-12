@@ -59,7 +59,7 @@ La aplicación móvil permite:
 
 ## 🌐 Enlaces del Proyecto
 - 📦 **Repositorio del Proyecto:** https://github.com/Dylan10181/plan-de-mejoramiento-automatizacion.git
-- 🌍 **Página Web (GitHub Pages):** [https://dylantrujillo.github.io/plan-de-mejoramiento-automatizacion/](https://dylantrujillo.github.io/plan-de-mejoramiento-automatizacion](https://dylan10181.github.io/plan-de-mejoramiento-automatizacion/)  
+- 🌍 **Página Web (GitHub Pages):** https://dylan10181.github.io/plan-de-mejoramiento-automatizacion/
 - 🧾 **Documentación Técnica:** [https://dylantrujillo.github.io/plan-de-mejoramiento-automatizacion/documentacion.html](https://dylantrujillo.github.io/plan-de-mejoramiento-automatizacion/documentacion.html)  
 - 📱 **Aplicación y Simulación:** [https://dylantrujillo.github.io/plan-de-mejoramiento-automatizacion/aplicacion.html](https://dylantrujillo.github.io/plan-de-mejoramiento-automatizacion/aplicacion.html)
 
