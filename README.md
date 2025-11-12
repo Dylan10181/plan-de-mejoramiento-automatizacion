@@ -4,7 +4,7 @@
 **Grado:** 11°  
 **Área:** Mecatrónica  
 **Docente:** Frank Edier González Buitrago  
-**Institución:** [Tu institución educativa aquí]  
+**Institución:** INEM FRANCISCO DE PAULA SANTANDER  
 **Año:** 2025  
 
 ---
